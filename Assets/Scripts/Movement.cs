@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
     public float horizontal;
     public float vertical;
 
+    public Transform BulletSpawnRef;
+    public GameObject BulletPrefab;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,8 +52,21 @@ public class Movement : MonoBehaviour
         horizontal = Input.GetAxis("Mouse X");
         vertical = Input.GetAxis("Mouse Y");
 
-        // transform.Rotate(Vector3.up, horizontal * Time.deltaTime * MovementSpeed);
-        // transform.Rotate(-1 * Vector3.right, vertical * Time.deltaTime * MovementSpeed);
-        rocket.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
+        if(Input.GetMouseButton(1)) //0 - Left Click , 1 - Right Click 2- middle click
+        {
+            // transform.Rotate(Vector3.up, horizontal * Time.deltaTime * MovementSpeed);
+            // transform.Rotate(-1 * Vector3.right, vertical * Time.deltaTime * MovementSpeed);
+            rocket.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
+        }
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Create the Bullet!
+            Instantiate(BulletPrefab, BulletSpawnRef.position, BulletSpawnRef.rotation);
+
+            // Shoot Bullet!
+
+
+        }
     }
 }
