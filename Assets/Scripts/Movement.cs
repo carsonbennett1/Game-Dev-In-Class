@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
 
     public Transform BulletSpawnRef;
     public GameObject BulletPrefab;
+    public float ShootForce;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,11 +63,12 @@ public class Movement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Create the Bullet!
-            Instantiate(BulletPrefab, BulletSpawnRef.position, BulletSpawnRef.rotation);
+            GameObject tempBullet = Instantiate(BulletPrefab, BulletSpawnRef.position, BulletSpawnRef.rotation);
 
             // Shoot Bullet!
+            tempBullet.GetComponent<Rigidbody>().AddForce(BulletSpawnRef.forward * ShootForce);
 
-
+            Destroy(tempBullet, 3);
         }
     }
 }
