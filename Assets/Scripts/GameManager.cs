@@ -38,5 +38,4 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Score: " + score; // Method to constantly update UI text
         }
     }
-
 }
