@@ -60,6 +60,11 @@ public class Movement : MonoBehaviour
             rocket.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
         }
         
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             // Create the Bullet!
