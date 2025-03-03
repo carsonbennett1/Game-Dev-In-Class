@@ -354,7 +354,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.4379272, y: 27.319275}
+  m_AnchoredPosition: {x: 1.4379272, y: 25}
   m_SizeDelta: {x: -1360.2157, y: -572.2684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978519052
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03773582, g: 0.011569945, b: 0.011569945, a: 0.7058824}
+  m_Color: {r: 0.03773582, g: 0.011569945, b: 0.011569945, a: 0.7882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
