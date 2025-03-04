@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     public Transform BulletSpawnRef;
     public GameObject BulletPrefab;
     public float ShootForce;
+    private bool isMoving = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,31 +24,33 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isMoving = false;
         if (Input.GetKey(KeyCode.W))
         {
             // transform.Translate(Vector3.forward * Time.deltaTime);    
             rocket.AddForce(transform.forward * MoveSpeed);
+            isMoving = true;
         }
         
         if (Input.GetKey(KeyCode.S))
         {
            // transform.Translate(-1 * Vector3.forward * Time.deltaTime);    
             rocket.AddForce(-1 * transform.forward * MoveSpeed);
-
+            isMoving = true;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             // transform.Translate(Vector3.right * Time.deltaTime);    
             rocket.AddForce(transform.right * MoveSpeed);
-
+            isMoving = true;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             // transform.Translate(-1 * Vector3.right * Time.deltaTime);    
             rocket.AddForce(-1 * transform.right * MoveSpeed);
-
+            isMoving = true;
         }
 
         horizontal = Input.GetAxis("Mouse X");
@@ -60,6 +63,21 @@ public class Movement : MonoBehaviour
             rocket.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
         }
         
+        if (isMoving)
+        {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayMovementSound();
+            }
+        }
+        else
+        {
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.StopMovementSound();
+            }
+        }
+
         if (PauseMenu.isPaused)
         {
             return;
