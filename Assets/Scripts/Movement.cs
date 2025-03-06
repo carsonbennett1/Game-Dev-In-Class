@@ -7,13 +7,14 @@ public class Movement : MonoBehaviour
     public Rigidbody rocket;
 
     // public float MovementSpeed = 80.0f;
-    public float horizontal;
-    public float vertical;
 
     public Transform bulletSpawnRef;
     public GameObject bulletPrefab;
     public float ShootForce;
     private bool isMoving = false;
+
+    public GameObject flame;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,42 +26,44 @@ public class Movement : MonoBehaviour
     void Update()
     {
         isMoving = false;
-        if (Input.GetKey(KeyCode.W))
+        if (InputManager.Instance.MoveUp)       
         {
             // transform.Translate(Vector3.forward * Time.deltaTime);    
             rocket.AddForce(transform.forward * MoveForce);
             isMoving = true;
         }
         
-        if (Input.GetKey(KeyCode.S))
+        if (InputManager.Instance.MoveDown)       
         {
            // transform.Translate(-1 * Vector3.forward * Time.deltaTime);    
             rocket.AddForce(-1 * transform.forward * MoveForce);
             isMoving = true;
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (InputManager.Instance.MoveRight)       
         {
             // transform.Translate(Vector3.right * Time.deltaTime);    
             rocket.AddForce(transform.right * MoveForce);
             isMoving = true;
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (InputManager.Instance.MoveLeft)       
         {
             // transform.Translate(-1 * Vector3.right * Time.deltaTime);    
             rocket.AddForce(-1 * transform.right * MoveForce);
             isMoving = true;
         }
 
-        horizontal = Input.GetAxis("Mouse X");
-        vertical = Input.GetAxis("Mouse Y");
+        if (flame != null)
+        {
+            flame.SetActive(isMoving);
+        }
 
-        if(Input.GetMouseButton(1)) //0 - Left Click , 1 - Right Click 2- middle click
+        if (InputManager.Instance.IsRotating)       
         {
             // transform.Rotate(Vector3.up, horizontal * Time.deltaTime * MovementSpeed);
             // transform.Rotate(-1 * Vector3.right, vertical * Time.deltaTime * MovementSpeed);
-            rocket.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
+            rocket.AddRelativeTorque(-1 * InputManager.Instance.VerticalLook * TurnTorque, InputManager.Instance.HorizontalLook * TurnTorque, 0);
         }
         
         if (isMoving)
@@ -83,15 +86,9 @@ public class Movement : MonoBehaviour
             return;
         }
         
-        if (Input.GetMouseButtonDown(0))
+        if (InputManager.Instance.IsShooting)       
         {
-            // Create the Bullet!
-            GameObject tempBullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
-
-            // Shoot Bullet!
-            tempBullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * ShootForce);
-
-            Destroy(tempBullet, 3);
+            Bullet.FireBullet(bulletPrefab, bulletSpawnRef, ShootForce);
         }
     }
 }
