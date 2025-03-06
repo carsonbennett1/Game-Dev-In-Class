@@ -10,8 +10,8 @@ public class Movement : MonoBehaviour
     public float horizontal;
     public float vertical;
 
-    public Transform BulletSpawnRef;
-    public GameObject BulletPrefab;
+    public Transform bulletSpawnRef;
+    public GameObject bulletPrefab;
     public float ShootForce;
     private bool isMoving = false;
 
@@ -86,10 +86,10 @@ public class Movement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Create the Bullet!
-            GameObject tempBullet = Instantiate(BulletPrefab, BulletSpawnRef.position, BulletSpawnRef.rotation);
+            GameObject tempBullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
 
             // Shoot Bullet!
-            tempBullet.GetComponent<Rigidbody>().AddForce(BulletSpawnRef.forward * ShootForce);
+            tempBullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * ShootForce);
 
             Destroy(tempBullet, 3);
         }
