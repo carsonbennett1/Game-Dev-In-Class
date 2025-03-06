@@ -2052,7 +2052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f285208280747bd98a054602e37bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.25
+  MoveForce: 0.3
   TurnTorque: 0.02
   rocket: {fileID: 678334173}
   horizontal: 0
