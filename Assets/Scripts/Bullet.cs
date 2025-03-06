@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     
     Destroy(gameObject);
 
-    if(collision.gameObject.tag == "Asteroid")
+    if (collision.gameObject.CompareTag("Asteroid"))
     {
         Destroy(collision.gameObject);
     }

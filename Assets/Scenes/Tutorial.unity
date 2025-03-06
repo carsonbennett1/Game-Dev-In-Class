@@ -2057,8 +2057,8 @@ MonoBehaviour:
   rocket: {fileID: 678334173}
   horizontal: 0
   vertical: 0
-  BulletSpawnRef: {fileID: 47687574}
-  BulletPrefab: {fileID: 853257308540022213, guid: 9fca3b936e22946e284de332dd357f61, type: 3}
+  bulletSpawnRef: {fileID: 47687574}
+  bulletPrefab: {fileID: 853257308540022213, guid: 9fca3b936e22946e284de332dd357f61, type: 3}
   ShootForce: 200
 --- !u!4 &678334172 stripped
 Transform:
